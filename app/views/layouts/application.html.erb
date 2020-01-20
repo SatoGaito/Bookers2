@@ -13,13 +13,13 @@
     <header>
       <ul>
         <% if user_signed_in? %>
-          <li>Home</li>
+          <li><%= link_to "Home", user_path(current_user.id) %></li>
           <li><%= link_to "Users", users_path %></li>
           <li><%= link_to "Books", books_path %></li>
           <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li>Home</li>
-          <li>About</li>
+          <li><%= link_to "Home", '/' %></li>
+          <li><%= link_to "About", about_path %></li>
           <li><%= link_to "sign up", new_user_registration_path %></li>
           <li><%= link_to "login", new_user_session_path %></li>
         <% end %>
@@ -28,6 +28,12 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
+
     <%= yield %>
+
+    <footer>
+      <p>CopyRight Infratop.inc</p>
+    </footer>
+
   </body>
 </html>

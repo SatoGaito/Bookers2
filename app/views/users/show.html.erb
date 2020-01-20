@@ -1,0 +1,43 @@
+
+<h1>User info</h1>
+<table>
+  <tbody>
+    <tr>
+      <th><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></th>
+    </tr>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+  <% if @user.id == current_user.id %>
+    <%= link_to "編集", edit_user_path(@user) %>
+  <% end %>
+
+<h1>Books</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @books.each do |book| %>
+    <tbody>
+      <tr>
+        <td><%= link_to book.title, book_path(book) %></td>
+        <td><%= book.body %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  <% end  %>
+</table>

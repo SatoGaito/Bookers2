@@ -1,2 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<h1>User info</h1>
+<table>
+  <tbody>
+    <tr></tr>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @books.each do |book| %>
+    <tbody>
+      <tr>
+        <td><%= link_to book.title, book_path(book) %></td>
+        <td><%= book.body %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  <% end  %>
+</table>

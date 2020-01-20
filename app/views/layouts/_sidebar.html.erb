@@ -1,34 +1,53 @@
-<h1>User info</h1>
-<table>
-  <tbody>
-    <tr>
-      <th><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></th>
-    </tr>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </tbody>
-</table>
+<div class="col-xs-3">
+  <h2>User info</h2>
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+  <table class="table">
+    <tbody>
+      <tr></tr>
+      <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
 
-<% if @user.id == current_user.id %>
-  <%= link_to "編集", edit_user_path(@user) %>
-<% else %>
-  <%= link_to "編集", user_path(current_user.id) %>
-<% end %>
+  <div class="row">
+    <% if @user.id == current_user.id %>
+      <%= link_to "", edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+    <% else %>
+      <%= link_to "", user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+    <% end %>
+  </div>
 
-<h1>New Book</h1>
-<%= form_for(@Book) do |f| %>
+  <h2>New Book</h2>
+  <%= form_for(@Book) do |f| %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+    <div class="field row">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "col-xs-12 book_title" %>
+    </div>
 
-  <%= f.label :opinion %>
-  <%= f.text_area :body %>
+    <div class="field row">
+      <%= f.label :opinion %>
+      <%= f.text_area :body, class: "col-xs-12 book_body" %>
+    </div>
+    
+    <div class="actions row">
+      <%= f.submit "Create Book", class: "btn btn-primary col-xs-12" %>
+    </div>
+  
+  <% end %>
 
-  <%= f.submit "Create Book" %>
-<% end %>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<h1>New Book</h1>
+<%= form_for(@book) do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :opinion %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Create Book" %>
+<% end %>
+<h1>Books</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @books.each do |book| %>
+    <tbody>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  <% end  %>
+</table>

@@ -1,3 +1,40 @@
+
+
+<h1>User info</h1>
+<table>
+  <tbody>
+    <tr>
+      <th><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></th>
+    </tr>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<% if @user.id == current_user.id %>
+  <%= link_to "編集", edit_user_path(@user) %>
+<% else %>
+  <%= link_to "編集", user_path(current_user.id) %>
+<% end %>
+
+<h1>New Book</h1>
+<%= form_for(@book) do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :opinion %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Create Book" %>
+<% end %>
+
 <h2>Users</h2>
 <table>
   <thead>
@@ -10,7 +47,11 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td></td>
+        <td>
+          <%= link_to user_path(user) do %>
+            <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+          <% end %>
+        </td>
         <td><%= user.name %></td>
         <td><%= link_to "Show", user_path(user) %></td>
       </tr>

@@ -1,60 +1,29 @@
 
+<%= render 'layouts/sidebar', users: @user %>
 
-<h1>User info</h1>
-<table>
-  <tbody>
-    <tr>
-      <th><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></th>
-    </tr>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </tbody>
-</table>
-
-<% if @user.id == current_user.id %>
-  <%= link_to "編集", edit_user_path(@user) %>
-<% else %>
-  <%= link_to "編集", user_path(current_user.id) %>
-<% end %>
-
-<h1>New Book</h1>
-<%= form_for(@book) do |f| %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
-  <%= f.label :opinion %>
-  <%= f.text_area :body %>
-
-  <%= f.submit "Create Book" %>
-<% end %>
-
-<h2>Users</h2>
-<table>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+<div class="col-xs-9">
+  <h2>Users</h2>
+  <table class="table">
+    <thead>
       <tr>
-        <td>
-          <%= link_to user_path(user) do %>
-            <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-          <% end %>
-        </td>
-        <td><%= user.name %></td>
-        <td><%= link_to "Show", user_path(user) %></td>
+        <th>image</th>
+        <th>name</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user_path(user) do %>
+              <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %>
+            <% end %>
+          </td>
+          <td><%= user.name %></td>
+          <td><%= link_to "Show", user_path(user) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

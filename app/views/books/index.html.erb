@@ -1,3 +1,5 @@
+<%= render 'layouts/error_messages' %>
+
 <h1>New Book</h1>
 <%= form_for(@book) do |f| %>
 
@@ -21,7 +23,7 @@
   <% @books.each do |book| %>
     <tbody>
       <tr>
-        <td><%= book.title %></td>
+        <td><%= link_to book.title, book_path(book) %></td>
         <td><%= book.body %></td>
         <td></td>
         <td></td>
